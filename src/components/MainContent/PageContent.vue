@@ -2,19 +2,22 @@
     <div id='wrapper' :class="[toggleClass ? 'menuDisplayed' : '']">
 
         <!--sidebar -->
-        <SideBar />
+        <SideBar @getChange="handleChange"/> <!--get change is for the back button only-->
 
         <!-- Page content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class ="row">
                     <div class="col-lg-12">
-                        <button class="back-button" @click="toggleMenu"> 
-                            
-                            <img class="back-icon" v-if="toggleClass == false" :src="this.frontIcon" alt="Front Icon">
-                            <img class="back-icon" v-if="toggleClass == true" :src="this.backIcon" alt="Back Icon"> 
+                        <button v-show="toggleClass == false" class="back-button" @click="toggleTrue"> 
+
+                            <i class="fa-solid fa-bars burger-icon"></i>
                             
                         </button>
+
+                        <button v-show="toggleClass == true" class="back-button"/> <!-- filler lang para may space sa taas (pwede tanggalin)-->
+
+
 
                         <hr class="divider"/>
                         
@@ -56,12 +59,12 @@ export default {
     },
 
     methods:{
-        toggleMenu(){
-            //e.preventDefault();
-            this.toggleClass = !this.toggleClass;
-        },
         toggleTrue(){
             this.toggleClass = true;
+        },
+        handleChange(data){
+            this.toggleClass = data;
+            console.log(this.toggleClass)
         }
     },
     created: function(){
@@ -71,17 +74,21 @@ export default {
 </script>
 
 <style>
-.back-icon{
-    height: 20px;
-    width: 20px;
+.burger-icon{
+    padding:0;
+    
+    height: 25px;
+    width: 25px;
 }
 .back-button{
-    border: 0px solid;
+    margin-top:5px;
+    border: 0px;
     background-color: #FFFFFF;
 }
 .back-button:hover{
     opacity: 0.4;
     transition: 0.2s;
+    transform: scale(1.15);
 }
 .divider{
     height:1px;
