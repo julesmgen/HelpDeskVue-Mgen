@@ -22,6 +22,7 @@
     $issue = $received_data->issue;
     $description = $received_data->description;
     $justification = $received_data->justification;
+    $status = $received_data->status;
 
     //query executed if fields are not empty    
 
@@ -37,7 +38,8 @@
             contact_no,
             issue,
             description,
-            justification
+            justification,
+            status
             ) 
             VALUES(
             '".$requestor."',
@@ -45,7 +47,8 @@
             '".$contact_no."',
             '".$issue."',
             '".$description."',
-            '".$justification."'
+            '".$justification."',
+            '".$status."'
             )
         ");
 
